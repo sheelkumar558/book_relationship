@@ -7,7 +7,7 @@ app.use(express.json());
 
 const connect = () => {
   return mongoose.connect(
-    "mongodb+srv://sheelu:sheelu123@cluster0.73b79.mongodb.net/book?retryWrites=true&w=majority"
+    "mongodb+srv://sheelu:sheelu123@cluster0.73b79.mongodb.net/books?retryWrites=true&w=majority"
   );
 };
 
@@ -122,7 +122,7 @@ app.get("/users", async (req, res) => {
 
   app.get("/section", async (req, res) => {
     try {
-      const section = await User.find().lean().exec();
+      const section = await Section.find().lean().exec();
   
       return res.status(200).send({ section: section }); // []
     } catch (err) {
@@ -134,7 +134,7 @@ app.get("/users", async (req, res) => {
   
   app.post("/section", async (req, res) => {
     try {
-      const section = await User.create(req.body);
+      const section = await Section.create(req.body);
   
       return res.status(201).send(section);
     } catch (err) {
@@ -145,7 +145,7 @@ app.get("/users", async (req, res) => {
 
   app.get("/author", async (req, res) => {
     try {
-      const author = await User.find().lean().exec();
+      const author = await Author.find().lean().exec();
   
       return res.status(200).send({ author: author }); // []
     } catch (err) {
@@ -157,7 +157,7 @@ app.get("/users", async (req, res) => {
   
   app.post("/author", async (req, res) => {
     try {
-      const author = await User.create(req.body);
+      const author = await Author.create(req.body);
   
       return res.status(201).send(author);
     } catch (err) {
@@ -167,7 +167,7 @@ app.get("/users", async (req, res) => {
 
   app.get("/book_author", async (req, res) => {
     try {
-      const book_author = await User.find().lean().exec();
+      const book_author = await Book_author.find().lean().exec();
   
       return res.status(200).send({ book_author: book_author }); // []
     } catch (err) {
@@ -179,7 +179,7 @@ app.get("/users", async (req, res) => {
   
   app.post("/book_author", async (req, res) => {
     try {
-      const book_author = await User.create(req.body);
+      const book_author = await Book_author.create(req.body);
   
       return res.status(201).send(book_author);
     } catch (err) {
@@ -218,7 +218,7 @@ app.get("/users/:id", async (req, res) => {
 //sectionId
 app.get("/section/:id", async (req, res) => {
     try {
-      const user = await User.findById(req.params.id).lean().exec();
+      const user = await Section.findById(req.params.id).lean().exec();
       // db.users.findOne({_id: Object('622893471b0065f917d24a38')})
   
       return res.status(200).send(section);
@@ -229,7 +229,7 @@ app.get("/section/:id", async (req, res) => {
   
   app.patch("/section/:id", async (req, res) => {
     try {
-      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      const user = await Section.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
       })
         .lean()
@@ -244,7 +244,7 @@ app.get("/section/:id", async (req, res) => {
 //bookId
 app.get("/book/:id", async (req, res) => {
     try {
-      const user = await User.findById(req.params.id).lean().exec();
+      const user = await Book.findById(req.params.id).lean().exec();
       // db.users.findOne({_id: Object('622893471b0065f917d24a38')})
   
       return res.status(200).send(book);
@@ -255,7 +255,7 @@ app.get("/book/:id", async (req, res) => {
   
   app.patch("/book/:id", async (req, res) => {
     try {
-      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      const user = await Book.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
       })
         .lean()
@@ -270,7 +270,7 @@ app.get("/book/:id", async (req, res) => {
 //authorId
 app.get("/author/:id", async (req, res) => {
     try {
-      const user = await User.findById(req.params.id).lean().exec();
+      const user = await Author.findById(req.params.id).lean().exec();
       // db.users.findOne({_id: Object('622893471b0065f917d24a38')})
   
       return res.status(200).send(author);
@@ -281,7 +281,7 @@ app.get("/author/:id", async (req, res) => {
   
   app.patch("/author/:id", async (req, res) => {
     try {
-      const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      const author = await Author.findByIdAndUpdate(req.params.id, req.body, {
         new: true,
       })
         .lean()
